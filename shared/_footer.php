@@ -5,7 +5,7 @@
           <!-- Insert website logo -->
           <img src="images/company-logo.jpg" alt="Website Logo">
           <!-- Display visitor count -->
-          <p>ALVINE INTERNATIONAL SCHOOL</p>
+          <p>Lehi INTERNATIONAL SCHOOL</p>
           <!-- Display time zone -->
           <p>P.O.BOX 612,GULU,Uganda </p>
         </div>
@@ -31,7 +31,7 @@
       </div>
       <div class="row mt-4">
         <div class="col-md-12">
-          <p>&copy; <?php echo date('Y'); ?> By <a href="https://github.com/alvine2" target="_blank">Alvine kinyera</a>. All rights reserved.</p>
+          <p>&copy; <?php echo date('Y'); ?> By <a href="https://github.com/Lehi2" target="_blank">Lehi kinyera</a>. All rights reserved.</p>
         </div>
       </div>
     </div>

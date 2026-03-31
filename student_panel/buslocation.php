@@ -11,7 +11,7 @@ include('../assets/config.php');
 	<link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="../css/oranbyte-google-translator.css">
     <script src="../js/oranbyte-google-translator.js"></script>
-	<title>ERP</title>
+	<title>Lehi International</title>
 </head>
 <body>
      <nav class="navbar navbar-expand-lg bg-body-tertiary">

@@ -39,7 +39,7 @@ if (isset($_SESSION['uid'])) {
 
 <head>
   <meta charset="UTF-8">
-  <title>Alvine International School</title>
+  <title>Lehi International School</title>
   <!-- Fontawesome CDN Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +56,7 @@ if (isset($_SESSION['uid'])) {
       <div class="front">
         <img src="images/loginimage.jpg" alt="">
         <div class="text">
-          <span class="text-1">ALVINE INTERNATIONAL SCHOOL<br></span>
+          <span class="text-1">Lehi INTERNATIONAL SCHOOL<br></span>
           <span class="text-2">The future in Tech</span>
         </div>
       </div>

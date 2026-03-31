@@ -86,6 +86,7 @@ if (isset($_SESSION['uid'])) {
                 <i class="bi bi-eye-fill" style="margin-left:auto;margin-right: 6px;" id="togglePassword"></i>
               </div>
               <div class="text"><a id="forgotpassword">Forgot password?</a></div>
+              <div class="text"><a id="createAccount">Create Account</a></div>
               <div class="button input-box">
                 <button type="submit" class="btn">
                   Submit

@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# 🍊 school-management-system 
+# 🍊 Lehi International School
 PHP School management system developed for schools or small institutes. You can use this to maintain record's related to students, teachers, and other. 
 
 
@@ -117,7 +116,7 @@ PHP School management system developed for schools or small institutes. You can 
    make sure your directory setup is like : <i>C:\xampp\htdocs\school-management-system\ </i> : and index.php file is available on the that location
 
 <b>Step-4 :</b> Run the application <br>
-   <b> visit on the url : <i>http://localhost/school-management-system</i> </b>
+   <b> visit on the url : <i>http://localhost/Alvine</i> </b>
    <br> Visit to the given URL to see the running website
 
 ## 🔐 Emails and Passwords
@@ -145,7 +144,3 @@ Please make sure to update tests as appropriate.
 
 
 
-=======
-# Lehi-international
-IUEA PROJECT
->>>>>>> 4f749a168ac7b78b81a1358bef12115ea156a492

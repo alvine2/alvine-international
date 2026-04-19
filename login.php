@@ -56,7 +56,7 @@ if (isset($_SESSION['uid'])) {
       <div class="front">
         <img src="images/loginimage.jpg" alt="">
         <div class="text">
-          <span class="text-1">Lehi INTERNATIONAL SCHOOL<br></span>
+          <span class="text-1">Lehi International<br></span>
           <span class="text-2">The future in Tech</span>
         </div>
       </div>
@@ -86,7 +86,6 @@ if (isset($_SESSION['uid'])) {
                 <i class="bi bi-eye-fill" style="margin-left:auto;margin-right: 6px;" id="togglePassword"></i>
               </div>
               <div class="text"><a id="forgotpassword">Forgot password?</a></div>
-              <div class="text"><a id="createAccount">Create Account</a></div>
               <div class="button input-box">
                 <button type="submit" class="btn">
                   Submit

@@ -1,34 +1,398 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 19, 2024 at 01:43 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE DATABASE IF NOT EXISTS `_sms`;
-USE `_sms`;
 
--- ========================
--- ADMINS
--- ========================
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `lehi_school`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
 CREATE TABLE `admins` (
   `s_no` int(20) NOT NULL,
   `id` varchar(30) NOT NULL,
   `fname` varchar(100) NOT NULL,
   `lname` varchar(100) NOT NULL,
   `dob` varchar(20) NOT NULL,
-  `image` varchar(40) NOT NULL DEFAULT 'user.png',
+  `image` varchar(40) NOT NULL DEFAULT '1701517055user.png',
   `phone` varchar(20) NOT NULL,
   `gender` varchar(20) NOT NULL,
   `address` varchar(700) NOT NULL
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO `admins` VALUES
-(1, 'A9876543210', 'Lehi', 'Kinyera', '12/11/2024', 'admin.png', '0778235910', 'male', 'Kampala');
+--
+-- Dumping data for table `admins`
+--
 
--- ========================
--- STUDENTS
--- ========================
+INSERT INTO `admins` (`s_no`, `id`, `fname`, `lname`, `dob`, `image`, `phone`, `gender`, `address`) VALUES
+(2, 'Admin43210', 'Alvine', 'Kinyera', '12/11/2024', 'A98765432101718792069.png', '1234567890', 'male', 'Gulu Uganda');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendence`
+--
+
+CREATE TABLE `attendence` (
+  `s_no` int(20) NOT NULL,
+  `student_id` varchar(40) NOT NULL,
+  `attendence` varchar(10) NOT NULL,
+  `class` varchar(30) NOT NULL,
+  `section` varchar(5) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `attendence`
+--
+
+INSERT INTO `attendence` (`s_no`, `student_id`, `attendence`, `class`, `section`, `date`) VALUES
+(1, 'S1718791292', '1', '12c', 'A', '2024-06-19 15:32:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buses`
+--
+
+CREATE TABLE `buses` (
+  `s_no` int(11) NOT NULL,
+  `bus_id` varchar(20) NOT NULL,
+  `bus_title` varchar(100) NOT NULL,
+  `bus_number` varchar(20) NOT NULL,
+  `request` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `buses`
+--
+
+INSERT INTO `buses` (`s_no`, `bus_id`, `bus_title`, `bus_number`, `request`) VALUES
+(10, '1718791847', 'Bus 1', 'XXXXXX', ''),
+(11, '1718791949', 'Bus 2', '999999', ''),
+(12, '1718791984', 'Another bus', 'OOOOOOOO', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bus_root`
+--
+
+CREATE TABLE `bus_root` (
+  `s_no` int(11) NOT NULL,
+  `bus_id` varchar(20) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `arrival_time` varchar(20) NOT NULL,
+  `serial` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bus_root`
+--
+
+INSERT INTO `bus_root` (`s_no`, `bus_id`, `location`, `arrival_time`, `serial`) VALUES
+(7, '1718791847', 'Stop 1', '06:50 AM', 1),
+(8, '1718791847', 'Stop 2', '07:00 AM', 2),
+(9, '1718791847', 'Stop 3', '07:10 AM', 3),
+(10, '1718791847', 'SCHOOL', '10:00 AM', 4),
+(13, '1718791949', 'Stop z', '06:35 AM', 1),
+(14, '1718791949', 'SCHOOL', '10:00 AM', 2),
+(15, '1718791984', 'Stop x', '06:45 AM', 1),
+(16, '1718791984', 'SCHOOL', '10:00 AM', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bus_staff`
+--
+
+CREATE TABLE `bus_staff` (
+  `s_no` int(11) NOT NULL,
+  `id` varchar(20) NOT NULL,
+  `bus_id` varchar(20) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `contact` varchar(10) NOT NULL,
+  `role` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bus_staff`
+--
+
+INSERT INTO `bus_staff` (`s_no`, `id`, `bus_id`, `name`, `contact`, `role`) VALUES
+(1, 'B1718791847', '1718791847', 'ojok ', '8080808080', 'driver'),
+(2, 'B1718791847', '1718791847', 'alvine ', '0000000000', 'helper'),
+(3, 'B1718791949', '1718791949', 'martin', '7897898988', 'driver'),
+(4, 'B1718791949', '1718791949', 'okot', '7897898988', 'helper'),
+(5, 'B1718791984', '1718791984', 'ogen', '7897897898', 'driver'),
+(6, 'B1718791984', '1718791984', 'moses', '7894568796', 'helper');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classes`
+--
+
+CREATE TABLE `classes` (
+  `s_no` int(10) NOT NULL,
+  `class` varchar(20) NOT NULL,
+  `section` varchar(1) NOT NULL,
+  `fees` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exams`
+--
+
+CREATE TABLE `exams` (
+  `s_no` int(20) NOT NULL,
+  `exam_id` varchar(40) NOT NULL,
+  `exam_title` varchar(512) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `class` varchar(30) NOT NULL,
+  `section` varchar(10) NOT NULL,
+  `total_marks` varchar(10) NOT NULL,
+  `passing_marks` varchar(10) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `exams`
+--
+
+INSERT INTO `exams` (`s_no`, `exam_id`, `exam_title`, `subject`, `class`, `section`, `total_marks`, `passing_marks`, `timestamp`) VALUES
+(3, 'E17187917486672ae442b976', '21 ', 'DATABASES', '12c', 'A', '100', '33', '2024-06-19 15:39:08'),
+(4, 'E17187928006672b26095672', '14', 'MATHEMATICS', '12D', 'A', '100', '33', '2024-06-19 15:56:40'),
+(5, 'E17187929656672b305cbb25', '23', 'ENGLISH', '12E', 'A', '100', '33', '2024-06-19 15:59:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `s_no` int(11) NOT NULL,
+  `sender_id` varchar(20) NOT NULL,
+  `receiver_id` varchar(20) NOT NULL,
+  `msg` varchar(500) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`s_no`, `sender_id`, `receiver_id`, `msg`, `timestamp`) VALUES
+(7, 'T1718791191', 'S1718791292', 'Hello student', '2024-06-19 15:46:58'),
+(8, 'T1718791191', 'S1718791292', 'You are so naughty\n', '2024-06-19 15:47:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fee_record`
+--
+
+CREATE TABLE `fee_record` (
+  `s_no` int(11) NOT NULL,
+  `id` varchar(20) NOT NULL,
+  `month` varchar(20) NOT NULL,
+  `other_collection` int(5) NOT NULL,
+  `total` int(5) NOT NULL,
+  `paid` int(5) NOT NULL,
+  `balance` int(5) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leaves`
+--
+
+CREATE TABLE `leaves` (
+  `s_no` int(10) NOT NULL,
+  `sender_id` varchar(20) NOT NULL,
+  `send_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `leave_type` varchar(100) NOT NULL,
+  `leave_desc` varchar(255) NOT NULL,
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `status` varchar(10) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `leaves`
+--
+
+INSERT INTO `leaves` (`s_no`, `sender_id`, `send_date`, `leave_type`, `leave_desc`, `start_date`, `end_date`, `status`) VALUES
+(12, 'T1718791191', '2024-06-19 15:48:43', 'Medical Leave', 'accept my leave otherwise ....... ', '2024-06-20 00:00:00', '2024-06-27 00:00:00', 'pending'),
+(13, 'T1718791191', '2024-06-19 15:49:23', 'Casual Leave', 'I want some rest please give me leave', '2024-06-29 00:00:00', '2024-07-03 00:00:00', 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `marks`
+--
+
+CREATE TABLE `marks` (
+  `s_no` int(20) NOT NULL,
+  `exam_id` varchar(40) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `student_id` varchar(40) NOT NULL,
+  `marks` varchar(10) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `marks`
+--
+
+INSERT INTO `marks` (`s_no`, `exam_id`, `subject`, `student_id`, `marks`) VALUES
+(1, 'E17187917486672ae442b976', 'Mathematics', 'S1718791292', '86'),
+(2, 'E17187917486672ae442b976', 'Entrepreneurship', 'S1718791292', '62'),
+(3, 'E17187917486672ae442b976', 'English', 'S1718791292', '59'),
+(4, 'E17187928006672b26095672', 'Mathematics', 'S1718791292', '33'),
+(5, 'E17187929656672b305cbb25', 'Biology', 'S1718791292', '55'),
+(6, 'E17187929656672b305cbb25', 'Geography', 'S1718791292', '55'),
+(7, 'E17187929656672b305cbb25', 'English', 'S1718791292', '21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notes`
+--
+
+CREATE TABLE `notes` (
+  `s_no` int(20) NOT NULL,
+  `sender_id` varchar(40) NOT NULL,
+  `editor_id` varchar(40) NOT NULL,
+  `class` varchar(50) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `comment` varchar(1000) NOT NULL,
+  `file` varchar(50) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notes`
+--
+
+INSERT INTO `notes` (`s_no`, `sender_id`, `editor_id`, `class`, `subject`, `title`, `comment`, `file`, `timestamp`) VALUES
+(1, 'A9876543210', 'A9876543210', 'S2', 'Mathematics', 'Mathematics Homework', 'Do this on time', 'A98765432101718791715.png', '2024-06-19 15:38:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notice`
+--
+
+CREATE TABLE `notice` (
+  `s_no` int(20) NOT NULL,
+  `sender_id` varchar(40) NOT NULL,
+  `editor_id` varchar(40) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `body` varchar(1000) NOT NULL,
+  `file` varchar(100) NOT NULL,
+  `importance` varchar(5) NOT NULL DEFAULT '1',
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp(),
+  `role` varchar(11) NOT NULL,
+  `class` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notice`
+--
+
+INSERT INTO `notice` (`s_no`, `sender_id`, `editor_id`, `title`, `body`, `file`, `importance`, `timestamp`, `role`, `class`) VALUES
+(51, 'A9876543210', 'A9876543210', 'Notice title', 'body', 'A98765432101718791385.png', '2', '2024-06-19 15:33:05', '', ''),
+(52, 'A9876543210', 'A9876543210', 'Title 2', 'body 2', 'A98765432101718791411.png', '3', '2024-06-19 15:33:31', '', ''),
+(53, 'A9876543210', 'A9876543210', 'Holiday notice', 'enjoy your holidays', 'A98765432101718791447.png', '1', '2024-06-19 15:34:07', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `s_no` int(20) NOT NULL,
+  `sender_id` varchar(40) NOT NULL,
+  `class` varchar(30) NOT NULL,
+  `section` varchar(10) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `message` varchar(1000) NOT NULL,
+  `file` varchar(50) NOT NULL,
+  `datetime` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll`
+--
+
+CREATE TABLE `payroll` (
+  `s_no` int(11) NOT NULL,
+  `id` varchar(30) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `date` varchar(30) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `account_no` varchar(40) NOT NULL,
+  `ifsc_code` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reminders`
+--
+
+CREATE TABLE `reminders` (
+  `s_no` int(20) NOT NULL,
+  `id` varchar(40) NOT NULL,
+  `message` varchar(2000) NOT NULL,
+  `status` varchar(15) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `reminders`
+--
+
+INSERT INTO `reminders` (`s_no`, `id`, `message`, `status`) VALUES
+(68, 'T1718791191', 'Post a homework daily', 'completed'),
+(69, 'T1718791191', 'principal meeting', 'pending'),
+(70, 'A9876543210', 'Reminder for myself : have a good day', 'pending'),
+(71, 'A9876543210', '\nBest of luck', 'completed');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
 CREATE TABLE `students` (
   `s_no` int(20) NOT NULL,
   `id` varchar(40) NOT NULL,
@@ -39,27 +403,111 @@ CREATE TABLE `students` (
   `class` varchar(20) NOT NULL,
   `section` varchar(50) NOT NULL,
   `dob` varchar(15) NOT NULL,
-  `image` varchar(50) NOT NULL,
+  `image` varchar(50) NOT NULL DEFAULT '1701517055user.png',
   `phone` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
   `address` varchar(200) NOT NULL,
   `city` varchar(50) NOT NULL,
   `zip` varchar(20) NOT NULL,
   `state` varchar(50) NOT NULL,
-  `request_date` varchar(30),
-  `request_time` varchar(30),
-  `request` varchar(20)
-) ENGINE=InnoDB;
+  `request_date` varchar(30) NOT NULL,
+  `request_time` varchar(30) NOT NULL,
+  `request` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `students` VALUES
-(1,'S1001','Kinyera','Lehi','Kato James','Male','12c','A','2005-01-01','user.png','0778235910','Lehi@gmail.com','Kansanga','Kampala','256','Central','','',''),
-(2,'S1002','Brian','Okello','Okello Peter','Male','12c','A','2005-02-02','user.png','0700000001','brian@gmail.com','Ntinda','Kampala','256','Central','','',''),
-(3,'S1003','Sharon','Namara','Ssempala John','Female','12c','A','2005-03-03','user.png','0700000002','sharon@gmail.com','Naalya','Kampala','256','Central','','',''),
-(4,'S1004','Ivan','Ssemanda','Ssemanda Paul','Male','12c','A','2005-04-04','user.png','0700000003','ivan@gmail.com','Mukono','Mukono','256','Central','','','');
+--
+-- Dumping data for table `students`
+--
 
--- ========================
--- TEACHERS
--- ========================
+INSERT INTO `students` (`s_no`, `id`, `fname`, `lname`, `father`, `gender`, `class`, `section`, `dob`, `image`, `phone`, `email`, `address`, `city`, `zip`, `state`, `request_date`, `request_time`, `request`) VALUES
+(1, 'S1001', 'Brian', 'Okello', 'James Okello', 'Male', 'S2', 'A', '12-03-2009', 'S1001.png', '0771234567', 'brianokello@gmail.com', 'Kawempe', 'Kampala', '256', 'Central', '', '', ''),
+(2, 'S1002', 'Sharon', 'Nabukenya', 'Paul Nabukenya', 'Female', 'S3', 'B', '25-07-2008', 'S1002.png', '0702345678', 'sharonn@gmail.com', 'Mukono', 'Mukono', '256', 'Central', '', '', ''),
+(3, 'S1003', 'David', 'Mugisha', 'Peter Mugisha', 'Male', 'S1', 'A', '05-11-2010', 'S1003.png', '0753456789', 'davidm@gmail.com', 'Ntinda', 'Kampala', '256', 'Central', '', '', ''),
+(4, 'S1004', 'Faith', 'Achieng', 'Robert Ochieng', 'Female', 'S4', 'C', '18-02-2007', 'S1004.png', '0784567890', 'faitha@gmail.com', 'Gulu', 'Gulu', '256', 'Northern', '', '', ''),
+(5, 'S1005', 'Joel', 'Ssekandi', 'Henry Ssekandi', 'Male', 'S5', 'A', '30-09-2006', 'S1005.png', '0765678901', 'joels@gmail.com', 'Masaka', 'Masaka', '256', 'Central', '', '', ''),
+(6, 'S1006', 'Esther', 'Namutebi', 'John Namutebi', 'Female', 'S6', 'B', '14-01-2005', 'S1006.png', '0796789012', 'esthern@gmail.com', 'Jinja', 'Jinja', '256', 'Eastern', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_guardian`
+--
+
+CREATE TABLE `student_guardian` (
+  `s_no` int(20) NOT NULL,
+  `id` varchar(40) NOT NULL,
+  `gname` varchar(200) NOT NULL,
+  `gphone` varchar(20) NOT NULL,
+  `gaddress` varchar(200) NOT NULL,
+  `gcity` varchar(100) NOT NULL,
+  `gzip` varchar(50) NOT NULL,
+  `relation` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student_guardian`
+--
+
+INSERT INTO `student_guardian` (`s_no`, `id`, `gname`, `gphone`, `gaddress`, `gcity`, `gzip`, `relation`) VALUES
+(1, 'S1001', 'James Okello', '0771234567', 'Kawempe', 'Kampala', '256', 'Father'),
+(2, 'S1002', 'Sarah Nabukenya', '0702345678', 'Mukono Town', 'Mukono', '256', 'Mother'),
+(3, 'S1003', 'Peter Mugisha', '0753456789', 'Ntinda', 'Kampala', '256', 'Father'),
+(4, 'S1004', 'Grace Achieng', '0784567890', 'Pece', 'Gulu', '256', 'Mother');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `s_no` int(20) NOT NULL,
+  `subject_id` varchar(40) NOT NULL,
+  `subject_name` varchar(100) NOT NULL,
+  `class` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`s_no`, `subject_id`, `subject_name`, `class`) VALUES
+(1, 'S2MATH001', 'Mathematics', 'S2'),
+(2, 'S2ENT002', 'Entrepreneurship', 'S2'),
+(3, 'S2ENG003', 'English', 'S2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `syllabus`
+--
+
+CREATE TABLE `syllabus` (
+  `s_no` int(20) NOT NULL,
+  `class` varchar(50) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `file` varchar(100) NOT NULL DEFAULT '-1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `syllabus`
+--
+
+INSERT INTO `syllabus` (`s_no`, `class`, `subject`, `file`) VALUES
+(12, 'S2', 'Mathematics', 'T17187911911718792274.png'),
+(13, 'S2', 'English', 'T17187911911718792285.png'),
+(14, 'S2', 'Biology', 'T171879120000000001.png'),
+(15, 'S2', 'Chemistry', 'T171879120000000002.png'),
+(16, 'S2', 'Physics', 'T171879120000000003.png'),
+(17, 'S2', 'Geography', 'T171879120000000004.png'),
+(18, 'S2', 'History', 'T171879120000000005.png'),
+(19, 'S2', 'Entrepreneurship', 'T171879120000000006.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teachers`
+--
+
 CREATE TABLE `teachers` (
   `s_no` int(20) NOT NULL,
   `id` varchar(40) NOT NULL,
@@ -69,7 +517,7 @@ CREATE TABLE `teachers` (
   `subject` varchar(50) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `dob` varchar(20) NOT NULL,
-  `image` varchar(30) NOT NULL,
+  `image` varchar(30) NOT NULL DEFAULT '1701517055user.png',
   `phone` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `address` varchar(512) NOT NULL,
@@ -78,103 +526,402 @@ CREATE TABLE `teachers` (
   `state` varchar(50) NOT NULL,
   `class` varchar(20) NOT NULL,
   `section` varchar(20) NOT NULL
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO `teachers` VALUES
-(1,'T2001','Lehi','Kinyera','Kinyera Senior','ICT','Male','1990-01-01','user.png','0778235910','teacher@gmail.com','Kampala','Kampala','256','Central','12c','A');
+--
+-- Dumping data for table `teachers`
+--
 
--- ========================
--- SUBJECTS
--- ========================
-CREATE TABLE `subjects` (
+INSERT INTO `teachers` (`s_no`, `id`, `fname`, `lname`, `father`, `subject`, `gender`, `dob`, `image`, `phone`, `email`, `address`, `city`, `zip`, `state`, `class`, `section`) VALUES
+(1, 'T1001', 'John', 'Ochieng', 'Peter Ochieng', 'Mathematics', 'Male', '1985-04-12', 'T1001.png', '0771234567', 'john.ochieng@gmail.com', 'Kawempe', 'Kampala', '256', 'Central', 'S2', 'A'),
+(2, 'T1002', 'Sarah', 'Nabukenya', 'James Nabukenya', 'English', 'Female', '1988-09-21', 'T1002.png', '0702345678', 'sarah.nabukenya@gmail.com', 'Mukono Town', 'Mukono', '256', 'Central', 'S3', 'B'),
+(3, 'T1003', 'David', 'Mugisha', 'Paul Mugisha', 'Biology', 'Male', '1982-01-15', 'T1003.png', '0753456789', 'david.mugisha@gmail.com', 'Ntinda', 'Kampala', '256', 'Central', 'S1', 'A'),
+(4, 'T1004', 'Grace', 'Achieng', 'Robert Ochieng', 'Chemistry', 'Female', '1990-06-10', 'T1004.png', '0784567890', 'grace.achieng@gmail.com', 'Gulu Town', 'Gulu', '256', 'Northern', 'S4', 'C'),
+(5, 'T1005', 'Peter', 'Ssekandi', 'Henry Ssekandi', 'Physics', 'Male', '1987-11-03', 'T1005.png', '0765678901', 'peter.ssekandi@gmail.com', 'Masaka', 'Masaka', '256', 'Central', 'S5', 'A'),
+(6, 'T1006', 'Esther', 'Namutebi', 'John Namutebi', 'Geography', 'Female', '1992-02-28', 'T1006.png', '0796789012', 'esther.namutebi@gmail.com', 'Jinja Town', 'Jinja', '256', 'Eastern', 'S6', 'B');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher_guardian`
+--
+
+CREATE TABLE `teacher_guardian` (
   `s_no` int(20) NOT NULL,
-  `subject_id` varchar(40),
-  `subject_name` varchar(100),
-  `class` varchar(50)
-) ENGINE=InnoDB;
+  `id` varchar(40) NOT NULL,
+  `gname` varchar(256) NOT NULL,
+  `gphone` varchar(20) NOT NULL,
+  `gaddress` varchar(256) NOT NULL,
+  `gcity` varchar(50) NOT NULL,
+  `gzip` varchar(20) NOT NULL,
+  `relation` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO `subjects` VALUES
-(1,'SUB1','ICT','12c'),
-(2,'SUB2','Mathematics','12c'),
-(3,'SUB3','English','12c');
+--
+-- Dumping data for table `teacher_guardian`
+--
 
--- ========================
--- MARKS
--- ========================
-CREATE TABLE `marks` (
+INSERT INTO `teacher_guardian` (`s_no`, `id`, `gname`, `gphone`, `gaddress`, `gcity`, `gzip`, `relation`) VALUES
+(1, 'T1001', 'James Ochieng', '0771234567', 'Kawempe', 'Kampala', '256', 'Father'),
+(2, 'T1002', 'Sarah Nabukenya', '0702345678', 'Mukono Town', 'Mukono', '256', 'Mother'),
+(3, 'T1003', 'Peter Mugisha', '0753456789', 'Ntinda', 'Kampala', '256', 'Father'),
+(4, 'T1004', 'Grace Achieng', '0784567890', 'Gulu Town', 'Gulu', '256', 'Mother');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `time_table`
+--
+
+CREATE TABLE `time_table` (
   `s_no` int(20) NOT NULL,
-  `exam_id` varchar(40),
-  `subject` varchar(255),
-  `student_id` varchar(40),
-  `marks` varchar(10)
-) ENGINE=InnoDB;
+  `class` varchar(50) NOT NULL,
+  `section` varchar(10) NOT NULL,
+  `start_time` varchar(20) NOT NULL,
+  `end_time` varchar(20) NOT NULL,
+  `mon` varchar(30) NOT NULL,
+  `tue` varchar(30) NOT NULL,
+  `wed` varchar(30) NOT NULL,
+  `thu` varchar(30) NOT NULL,
+  `fri` varchar(30) NOT NULL,
+  `sat` varchar(30) NOT NULL,
+  `editor_id` varchar(40) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `marks` VALUES
-(1,'EX1','ICT','S1001','90'),
-(2,'EX1','Mathematics','S1001','85'),
-(3,'EX1','English','S1001','88'),
-(4,'EX1','ICT','S1002','75'),
-(5,'EX1','Mathematics','S1003','80');
+--
+-- Dumping data for table `time_table`
+--
 
--- ========================
--- ATTENDANCE
--- ========================
-CREATE TABLE `attendence` (
-  `s_no` int(20) NOT NULL,
-  `student_id` varchar(40),
-  `attendence` varchar(10),
-  `class` varchar(30),
-  `section` varchar(5),
-  `date` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB;
+INSERT INTO `time_table` (`s_no`, `class`, `section`, `start_time`, `end_time`, `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `editor_id`, `timestamp`) VALUES
+(1, 'S2', 'A', '07:00', '08:00', 'Mathematics', 'English', 'Biology', 'Chemistry', 'Physics', '', 'T1001', '2024-06-19 15:37:37'),
+(2, 'S2', 'A', '08:00', '09:00', 'English', 'Mathematics', 'Geography', 'History', 'Biology', '', 'T1002', '2024-06-19 15:37:37'),
+(3, 'S2', 'A', '09:00', '10:00', 'Mathematics', 'Physics', 'English', 'Chemistry', 'Geography', '', 'T1003', '2024-06-19 15:37:37'),
+(4, 'S2', 'A', '10:00', '11:00', 'Biology', 'Mathematics', 'History', 'English', 'Physics', '', 'T1004', '2024-06-19 15:37:37'),
+(5, 'S2', 'A', '11:00', '12:00', 'English', 'Chemistry', 'Mathematics', 'Biology', 'Geography', '', 'T1005', '2024-06-19 15:37:37'),
+(6, 'S2', 'A', '12:00', '01:00', 'Entrepreneurship', 'English', 'Physics', 'Mathematics', 'History', '', 'T1006', '2024-06-19 15:37:37'),
+(7, 'S2', 'A', '01:00', '02:00', 'Geography', 'Biology', 'English', 'Mathematics', 'Chemistry', '', 'T1001', '2024-06-19 15:37:37'),
+(8, 'S2', 'A', '02:00', '03:00', 'History', 'Physics', 'Mathematics', 'English', 'Biology', '', 'T1002', '2024-06-19 15:37:37');
+-- --------------------------------------------------------
 
-INSERT INTO `attendence` VALUES
-(1,'S1001','1','12c','A',NOW()),
-(2,'S1002','1','12c','A',NOW()),
-(3,'S1003','0','12c','A',NOW());
+--
+-- Table structure for table `users`
+--
 
--- ========================
--- FEEDBACK
--- ========================
-CREATE TABLE `feedback` (
-  `s_no` int(11) NOT NULL,
-  `sender_id` varchar(20),
-  `receiver_id` varchar(20),
-  `msg` varchar(500),
-  `timestamp` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB;
-
-INSERT INTO `feedback` VALUES
-(1,'T2001','S1001','Excellent work Kinyera',NOW()),
-(2,'T2001','S1002','Improve Mathematics',NOW());
-
--- ========================
--- USERS (LOGIN)
--- ========================
 CREATE TABLE `users` (
   `s_no` int(15) NOT NULL,
-  `id` varchar(40),
-  `email` varchar(256),
-  `password_hash` varchar(700),
-  `role` varchar(20),
-  `theme` varchar(20)
-) ENGINE=InnoDB;
+  `id` varchar(40) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  `password_hash` varchar(700) NOT NULL,
+  `role` varchar(20) NOT NULL,
+  `theme` varchar(20) NOT NULL DEFAULT 'light'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO `users` VALUES
-(1,'A9876543210','admin@gmail.com','123','admin','light'),
-(2,'T2001','teacher@gmail.com','123','teacher','light'),
-(3,'S1001','Lehi@gmail.com','123','student','light');
+--
+-- Dumping data for table `users`
+--
 
--- ========================
--- INDEXES & AUTO INCREMENT
--- ========================
-ALTER TABLE `admins` MODIFY `s_no` int AUTO_INCREMENT PRIMARY KEY;
-ALTER TABLE `students` MODIFY `s_no` int AUTO_INCREMENT PRIMARY KEY;
-ALTER TABLE `teachers` MODIFY `s_no` int AUTO_INCREMENT PRIMARY KEY;
-ALTER TABLE `subjects` MODIFY `s_no` int AUTO_INCREMENT PRIMARY KEY;
-ALTER TABLE `marks` MODIFY `s_no` int AUTO_INCREMENT PRIMARY KEY;
-ALTER TABLE `attendence` MODIFY `s_no` int AUTO_INCREMENT PRIMARY KEY;
-ALTER TABLE `feedback` MODIFY `s_no` int AUTO_INCREMENT PRIMARY KEY;
-ALTER TABLE `users` MODIFY `s_no` int AUTO_INCREMENT PRIMARY KEY;
+INSERT INTO `users` (`s_no`, `id`, `email`, `password_hash`, `role`, `theme`) VALUES
+(1, 'A9876543210', 'admin@gmail.com', '$2y$10$2MrhbQa30mll8mKG6LPyjuI7CQPC4abCvqrSvczxXVRu4RVueRfoe', 'admin', 'light'),
+(2, 'T1718791191', 'teacher@gmail.com', '$2y$10$2MrhbQa30mll8mKG6LPyjuI7CQPC4abCvqrSvczxXVRu4RVueRfoe', 'teacher', 'light'),
+(3, 'S1718791292', 'student@gmail.com', '$2y$10$2MrhbQa30mll8mKG6LPyjuI7CQPC4abCvqrSvczxXVRu4RVueRfoe', 'student', 'light'),
+(4, 'O7898987845', 'owner@gmail.com', '$2y$10$2MrhbQa30mll8mKG6LPyjuI7CQPC4abCvqrSvczxXVRu4RVueRfoe', 'owner', 'light');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `attendence`
+--
+ALTER TABLE `attendence`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `buses`
+--
+ALTER TABLE `buses`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `bus_root`
+--
+ALTER TABLE `bus_root`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `bus_staff`
+--
+ALTER TABLE `bus_staff`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `classes`
+--
+ALTER TABLE `classes`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `exams`
+--
+ALTER TABLE `exams`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `fee_record`
+--
+ALTER TABLE `fee_record`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `leaves`
+--
+ALTER TABLE `leaves`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `marks`
+--
+ALTER TABLE `marks`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `notes`
+--
+ALTER TABLE `notes`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `notice`
+--
+ALTER TABLE `notice`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `payroll`
+--
+ALTER TABLE `payroll`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `reminders`
+--
+ALTER TABLE `reminders`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `student_guardian`
+--
+ALTER TABLE `student_guardian`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `syllabus`
+--
+ALTER TABLE `syllabus`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `teachers`
+--
+ALTER TABLE `teachers`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `teacher_guardian`
+--
+ALTER TABLE `teacher_guardian`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `time_table`
+--
+ALTER TABLE `time_table`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`s_no`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `attendence`
+--
+ALTER TABLE `attendence`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `buses`
+--
+ALTER TABLE `buses`
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `bus_root`
+--
+ALTER TABLE `bus_root`
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `bus_staff`
+--
+ALTER TABLE `bus_staff`
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `classes`
+--
+ALTER TABLE `classes`
+  MODIFY `s_no` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exams`
+--
+ALTER TABLE `exams`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `fee_record`
+--
+ALTER TABLE `fee_record`
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `leaves`
+--
+ALTER TABLE `leaves`
+  MODIFY `s_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `marks`
+--
+ALTER TABLE `marks`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `notes`
+--
+ALTER TABLE `notes`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `notice`
+--
+ALTER TABLE `notice`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payroll`
+--
+ALTER TABLE `payroll`
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `reminders`
+--
+ALTER TABLE `reminders`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `student_guardian`
+--
+ALTER TABLE `student_guardian`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `syllabus`
+--
+ALTER TABLE `syllabus`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `teachers`
+--
+ALTER TABLE `teachers`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `teacher_guardian`
+--
+ALTER TABLE `teacher_guardian`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `time_table`
+--
+ALTER TABLE `time_table`
+  MODIFY `s_no` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `s_no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

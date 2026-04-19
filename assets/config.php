@@ -1,16 +1,16 @@
 <?php
-    $server = "localhost";
-   
-    $user = "root";
-    $password = "";
-    $db = "_sms";
-    
-    $conn = mysqli_connect($server, $user, $password, $db);
+$server = "localhost";
+$user = "root";
+$password = "";
+$db = "lehi_school";
 
-    if (!$conn) {
-        header('Location: ../errors/error.html');
-        exit();
-    }
+$conn = mysqli_connect($server, $user, $password, $db);
 
-
+if (!$conn) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Database connection failed"
+    ]);
+    exit();
+}
 ?>

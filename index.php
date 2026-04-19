@@ -27,10 +27,6 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-6 image-box">
-
-            <img src="./images/children.png" alt="Person Image" class="person" />
-          </div>
         </div>
       </div>
 

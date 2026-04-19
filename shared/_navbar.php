@@ -5,7 +5,7 @@
         <img src="./images/company-logo.jpg" alt="Logo" />
       </a>
       <a href="./index.php">
-        <h3>Lehi INTERNATIONAL SCHOOL</h3>
+        <h3>Lehi International</h3>
       </a>
     </div>
 

@@ -247,3 +247,13 @@ a{
   margin-bottom: 5px;
 }
 
+.image-wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.person {
+  width: 120px;
+  border-radius: 10px;
+}
